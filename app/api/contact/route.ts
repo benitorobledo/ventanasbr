@@ -13,7 +13,7 @@ export async function POST(req: Request) {
 
     const { data, error } = await resend.emails.send({
       from: "Ventanas BR <onboarding@resend.dev>", // Usar el correo por defecto de resend o configurado
-      to: ["contacto@ventanasrb.cl"], // El correo de la empresa al que llegan los mensajes
+      to: ["contacto@ventanasbr.cl"], // El correo de la empresa al que llegan los mensajes
       subject: `Nuevo mensaje de contacto de ${name}`,
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #eaeaec; border-radius: 8px; background-color: #f9fafb;">
@@ -34,7 +34,7 @@ export async function POST(req: Request) {
           <div style="border-top: 2px solid #eaeaec; padding-top: 20px; text-align: center; color: #6b7280; font-size: 14px;">
             <p style="margin-bottom: 5px;"><strong>Ventanas BR</strong></p>
             <p style="margin-bottom: 5px;">Teléfono: <a href="tel:+56977443314" style="color: #00AEEF; text-decoration: none;">+56 9 7744 3314</a></p>
-            <p style="margin-bottom: 5px;">Email: <a href="mailto:contacto@ventanasrb.cl" style="color: #00AEEF; text-decoration: none;">contacto@ventanasrb.cl</a></p>
+            <p style="margin-bottom: 5px;">Email: <a href="mailto:contacto@ventanasbr.cl" style="color: #00AEEF; text-decoration: none;">contacto@ventanasbr.cl</a></p>
             <p style="margin-bottom: 0;">Ubicación: Pan de Azúcar, Coquimbo, Chile</p>
           </div>
         </div>

@@ -2,7 +2,7 @@ export const SITE_DATA = {
   name: "Ventanas BR",
   phone: "+56 9 7744 3314",
   phoneFull: "56977443314",
-  email: "contacto@ventanasrb.cl",
+  email: "contacto@ventanasbr.cl",
   location: "Pan de Azúcar, Coquimbo, Chile",
   colors: {
     primary: "#1B1464",
