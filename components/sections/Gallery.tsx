@@ -7,29 +7,20 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 
 const galleryItems = [
   {
+    src: "/images/Aluminio/WhatsApp Image 2026-04-03 at 21.39.17.jpeg",
+    title: "Ventanas de Aluminio",
+  },
+  {
     src: "/images/pvc/WhatsApp Image 2026-04-04 at 14.02.05.jpeg",
     title: "Ventanas de PVC",
-    description: "Termopaneles con la mejor aislación termoacústica del mercado."
   },
   {
-    src: "/images/Aluminio/WhatsApp Image 2026-04-03 at 21.39.17.jpeg",
-    title: "Estructuras de Aluminio",
-    description: "Diseño elegante, duradero y de bajo mantenimiento."
-  },
-  {
-    src: "/images/puertas-mamparas/WhatsApp Image 2026-04-04 at 14.03.07.jpeg",
-    title: "Puertas y Mamparas",
-    description: "Divisiones modernas para oficinas y accesos de cristal."
+    src: "/images/obras-menores/WhatsApp Image 2026-04-04 at 14.21.20.jpeg",
+    title: "Obras en Generales",
   },
   {
     src: "/images/muebles/WhatsApp Image 2026-04-04 at 14.20.47.jpeg",
     title: "Muebles a Medida",
-    description: "Optimizamos tu espacio con diseños funcionales y modernos."
-  },
-  {
-    src: "/images/obras-menores/WhatsApp Image 2026-04-04 at 14.21.20.jpeg",
-    title: "Obras Menores",
-    description: "Soluciones integrales para la mejora de tu hogar."
   }
 ];
 
@@ -89,9 +80,6 @@ export function Gallery() {
                     <h3 className="text-2xl md:text-4xl font-bold mb-2 tracking-tight">
                       {galleryItems[currentIndex].title}
                     </h3>
-                    <p className="text-gray-200 text-lg md:text-xl font-light">
-                      {galleryItems[currentIndex].description}
-                    </p>
                   </motion.div>
                 </div>
               </motion.div>
