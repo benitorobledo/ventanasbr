@@ -50,9 +50,14 @@ export function Footer() {
         </div>
       </div>
       
-      <div className="container mx-auto px-4 pt-8 border-t border-white/10 text-center text-gray-400">
-        <p className="mb-2">&copy; {new Date().getFullYear()} {SITE_DATA.name}. Todos los derechos reservados.</p>
-        <p className="text-sm">desarrollado con ⚡ por <span className="font-medium text-gray-300">SRweb</span></p>
+      <div className="container mx-auto px-4 pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-gray-400">
+        <p>&copy; {new Date().getFullYear()} {SITE_DATA.name}. Todos los derechos reservados.</p>
+        <p>
+          Desarrollado con ⚡ por{" "}
+          <a href="https://www.srweb.cl" target="_blank" rel="noopener noreferrer" className="font-medium text-gray-300 hover:text-white transition-colors">
+            SRweb
+          </a>
+        </p>
       </div>
     </footer>
   );
