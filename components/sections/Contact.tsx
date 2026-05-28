@@ -30,10 +30,10 @@ export function Contact() {
   const onSubmit = async (data: ContactFormData) => {
     try {
       // @ts-ignore - grecaptcha is injected by Google script
-      window.grecaptcha.ready(async () => {
+      window.grecaptcha.enterprise.ready(async () => {
         try {
           // @ts-ignore
-          const token = await window.grecaptcha.execute(process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY, { action: 'submit' });
+          const token = await window.grecaptcha.enterprise.execute(process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY, { action: 'submit' });
           
           const response = await fetch("/api/contact", {
             method: "POST",

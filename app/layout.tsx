@@ -27,7 +27,7 @@ export default function RootLayout({
     <html lang="es">
       <body className={inter.className}>
         <Header />
-        <Script src={`https://www.google.com/recaptcha/api.js?render=${process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY}`} strategy="beforeInteractive" />
+        <Script src={`https://www.google.com/recaptcha/enterprise.js?render=${process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY}`} strategy="beforeInteractive" />
         {children}
         <Footer />
         <WhatsAppButton />
