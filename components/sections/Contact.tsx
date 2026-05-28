@@ -28,11 +28,25 @@ export function Contact() {
   });
 
   const onSubmit = async (data: ContactFormData) => {
-    // Simulación de envío
-    await new Promise((resolve) => setTimeout(resolve, 1500));
-    console.log("Form data:", data);
-    alert("¡Mensaje enviado con éxito! Te contactaremos a la brevedad.");
-    reset();
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      });
+
+      if (!response.ok) {
+        throw new Error("Error al enviar el mensaje");
+      }
+
+      alert("¡Mensaje enviado con éxito! Te contactaremos a la brevedad.");
+      reset();
+    } catch (error) {
+      console.error("Error submitting form:", error);
+      alert("Hubo un error al enviar el mensaje. Por favor, intenta nuevamente.");
+    }
   };
 
   return (
