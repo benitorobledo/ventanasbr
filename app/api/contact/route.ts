@@ -15,18 +15,30 @@ export async function POST(req: Request) {
       return NextResponse.json({ error: "Validación de seguridad requerida (reCAPTCHA)." }, { status: 400 });
     }
 
-    const recaptchaRes = await fetch("https://www.google.com/recaptcha/api/siteverify", {
+    const recaptchaRes = await fetch(`https://recaptchaenterprise.googleapis.com/v1/projects/absolute-range-291201/assessments?key=${process.env.RECAPTCHA_SECRET_KEY}`, {
       method: "POST",
       headers: {
-        "Content-Type": "application/x-www-form-urlencoded",
+        "Content-Type": "application/json",
       },
-      body: `secret=${process.env.RECAPTCHA_SECRET_KEY}&response=${recaptchaToken}`,
+      body: JSON.stringify({
+        event: {
+          token: recaptchaToken,
+          expectedAction: "submit",
+          siteKey: process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY,
+        }
+      }),
     });
 
     const recaptchaData = await recaptchaRes.json();
 
-    if (!recaptchaData.success || recaptchaData.score < 0.5) {
+    if (!recaptchaRes.ok || !recaptchaData.tokenProperties?.valid) {
       console.error("ReCAPTCHA falló:", recaptchaData);
+      return NextResponse.json({ error: "No pudimos validar que eres humano. Intenta de nuevo." }, { status: 400 });
+    }
+    
+    // Si la puntuación es muy baja (0.0 es bot seguro, 1.0 es humano seguro)
+    if (recaptchaData.riskAnalysis && recaptchaData.riskAnalysis.score < 0.5) {
+      console.error("ReCAPTCHA Score muy bajo:", recaptchaData.riskAnalysis.score);
       return NextResponse.json({ error: "No pudimos validar que eres humano. Intenta de nuevo." }, { status: 400 });
     }
 
