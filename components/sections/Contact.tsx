@@ -177,10 +177,17 @@ export function Contact() {
                 type="submit" 
                 variant="primary" 
                 className="w-full py-4 text-lg"
+                disabled={isSubmitting}
               >
                 {isSubmitting ? "Enviando..." : "Enviar Mensaje"}
                 {!isSubmitting && <Send size={20} />}
               </Button>
+              
+              <div className="text-xs text-gray-400 text-center pt-2">
+                Este sitio está protegido por reCAPTCHA y se aplican la{" "}
+                <a href="https://policies.google.com/privacy" target="_blank" rel="noreferrer" className="underline hover:text-gray-600">Política de Privacidad</a> y los{" "}
+                <a href="https://policies.google.com/terms" target="_blank" rel="noreferrer" className="underline hover:text-gray-600">Términos de Servicio</a> de Google.
+              </div>
             </form>
           </motion.div>
         </div>

@@ -16,3 +16,8 @@
 html {
   scroll-behavior: smooth;
 }
+
+/* Ocultar el badge flotante de reCAPTCHA como permite Google */
+.grecaptcha-badge {
+  visibility: hidden !important;
+}
