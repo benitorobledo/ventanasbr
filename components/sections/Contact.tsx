@@ -38,14 +38,15 @@ export function Contact() {
       });
 
       if (!response.ok) {
-        throw new Error("Error al enviar el mensaje");
+        const errorData = await response.json().catch(() => ({}));
+        throw new Error(errorData.error || "Error al enviar el mensaje");
       }
 
       alert("¡Mensaje enviado con éxito! Te contactaremos a la brevedad.");
       reset();
-    } catch (error) {
+    } catch (error: any) {
       console.error("Error submitting form:", error);
-      alert("Hubo un error al enviar el mensaje. Por favor, intenta nuevamente.");
+      alert(`Hubo un error al enviar el mensaje: ${error.message || "Por favor, intenta nuevamente."}`);
     }
   };
 

@@ -3,10 +3,15 @@ import { Resend } from "resend";
 
 export async function POST(req: Request) {
   try {
+    if (!process.env.RESEND_API_KEY) {
+      console.error("Falta la variable de entorno RESEND_API_KEY");
+      return NextResponse.json({ error: "Falta configurar la API Key de Resend en el servidor" }, { status: 500 });
+    }
+
     const resend = new Resend(process.env.RESEND_API_KEY);
     const { name, email, phone, message } = await req.json();
 
-    const data = await resend.emails.send({
+    const { data, error } = await resend.emails.send({
       from: "Ventanas BR <onboarding@resend.dev>", // Usar el correo por defecto de resend o configurado
       to: ["contacto@ventanasrb.cl"], // El correo de la empresa al que llegan los mensajes
       subject: `Nuevo mensaje de contacto de ${name}`,
@@ -36,8 +41,14 @@ export async function POST(req: Request) {
       `,
     });
 
+    if (error) {
+      console.error("Resend API Error:", error);
+      return NextResponse.json({ error: error.message || "Error al enviar el email por Resend" }, { status: 500 });
+    }
+
     return NextResponse.json({ success: true, data });
   } catch (error) {
-    return NextResponse.json({ error: "Error al enviar el email" }, { status: 500 });
+    console.error("Server Error:", error);
+    return NextResponse.json({ error: "Error interno del servidor" }, { status: 500 });
   }
 }
