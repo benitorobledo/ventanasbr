@@ -51,7 +51,8 @@ export function Footer() {
       </div>
       
       <div className="container mx-auto px-4 pt-8 border-t border-white/10 text-center text-gray-400">
-        <p>&copy; {new Date().getFullYear()} {SITE_DATA.name}. Todos los derechos reservados.</p>
+        <p className="mb-2">&copy; {new Date().getFullYear()} {SITE_DATA.name}. Todos los derechos reservados.</p>
+        <p className="text-sm">desarrollado con ⚡ por <span className="font-medium text-gray-300">SRweb</span></p>
       </div>
     </footer>
   );
