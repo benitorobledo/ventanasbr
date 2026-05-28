@@ -57,7 +57,7 @@ export function Gallery() {
 
         <div className="relative max-w-6xl mx-auto">
           {/* Main Carousel Area */}
-          <div className="relative h-[400px] md:h-[600px] w-full overflow-hidden rounded-[2.5rem] shadow-2xl bg-gray-100">
+          <div className="relative h-[400px] md:h-[600px] w-full overflow-hidden rounded-[2.5rem] shadow-2xl bg-slate-900">
             <AnimatePresence initial={false}>
               <motion.div
                 key={currentIndex}
@@ -71,7 +71,7 @@ export function Gallery() {
                   src={galleryItems[currentIndex].src}
                   alt={galleryItems[currentIndex].title}
                   fill
-                  className="object-cover"
+                  className="object-contain"
                   priority
                 />
                 {/* Info Overlay - Moved to Bottom to NOT cover the image center */}
