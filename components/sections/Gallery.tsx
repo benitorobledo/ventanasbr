@@ -7,24 +7,29 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 
 const galleryItems = [
   {
-    src: "/images/WhatsApp Image 2026-04-03 at 21.39.16 (1).jpeg",
-    title: "Instalación de Ventanas de PVC",
-    description: "Termopaneles con aislación térmica superior."
+    src: "/images/pvc/WhatsApp Image 2026-04-04 at 14.02.05.jpeg",
+    title: "Ventanas de PVC",
+    description: "Termopaneles con la mejor aislación termoacústica del mercado."
   },
   {
-    src: "/images/WhatsApp Image 2026-04-03 at 21.39.16.jpeg",
-    title: "Cierres de Terraza",
-    description: "Estructuras en aluminio titanium mate."
+    src: "/images/Aluminio/WhatsApp Image 2026-04-03 at 21.39.17.jpeg",
+    title: "Estructuras de Aluminio",
+    description: "Diseño elegante, duradero y de bajo mantenimiento."
   },
   {
-    src: "/images/servicios/pvc/ventana-pvc-5.jpeg",
-    title: "Viviendas Modernas",
-    description: "Soluciones a medida para proyectos residenciales."
+    src: "/images/puertas-mamparas/WhatsApp Image 2026-04-04 at 14.03.07.jpeg",
+    title: "Puertas y Mamparas",
+    description: "Divisiones modernas para oficinas y accesos de cristal."
   },
   {
-    src: "/images/servicios/aluminio/ventana-aluminio-3.jpeg",
-    title: "Ventanas de Aluminio",
-    description: "Diseño elegante y bajo mantenimiento."
+    src: "/images/muebles/WhatsApp Image 2026-04-04 at 14.20.47.jpeg",
+    title: "Muebles a Medida",
+    description: "Optimizamos tu espacio con diseños funcionales y modernos."
+  },
+  {
+    src: "/images/obras-menores/WhatsApp Image 2026-04-04 at 14.21.20.jpeg",
+    title: "Obras Menores",
+    description: "Soluciones integrales para la mejora de tu hogar."
   }
 ];
 
