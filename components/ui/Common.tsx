@@ -10,9 +10,10 @@ interface ButtonProps {
   variant?: "primary" | "accent" | "outline" | "whatsapp";
   className?: string;
   href?: string;
+  disabled?: boolean;
 }
 
-export function Button({ children, onClick, type = "button", variant = "primary", className = "", href }: ButtonProps) {
+export function Button({ children, onClick, type = "button", variant = "primary", className = "", href, disabled }: ButtonProps) {
   const baseStyles = "px-8 py-3 rounded-full font-semibold transition-all duration-300 flex items-center justify-center gap-2 text-center";
   const variants = {
     primary: "bg-primary text-white hover:bg-primary/90",
@@ -22,9 +23,12 @@ export function Button({ children, onClick, type = "button", variant = "primary"
   };
 
   const Component = href ? "a" : motion.button;
-  const props = href ? { href, className: `${baseStyles} ${variants[variant]} ${className}` } : { onClick, type, className: `${baseStyles} ${variants[variant]} ${className}`, whileHover: { scale: 1.05 }, whileTap: { scale: 0.95 } };
+  const combinedClassName = `${baseStyles} ${variants[variant]} ${className} ${disabled ? "opacity-50 cursor-not-allowed" : ""}`;
+  const props = href 
+    ? { href, className: combinedClassName } 
+    : { onClick, type, disabled, className: combinedClassName, whileHover: disabled ? {} : { scale: 1.05 }, whileTap: disabled ? {} : { scale: 0.95 } };
 
-  return <Component {...props}>{children}</Component>;
+  return <Component {...(props as any)}>{children}</Component>;
 }
 
 export function SectionTitle({ title, subtitle, light = false }: { title: string; subtitle?: string; light?: boolean }) {
