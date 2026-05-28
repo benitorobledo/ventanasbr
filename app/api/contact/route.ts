@@ -38,7 +38,7 @@ export async function POST(req: Request) {
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #eaeaec; border-radius: 8px; background-color: #f9fafb;">
           <div style="text-align: center; margin-bottom: 20px;">
-            <img src="https://ventanasbr.cl/images/logo-br.webp" alt="Ventanas BR Logo" style="max-width: 200px; height: auto;" />
+            <img src="https://ventanasbr.cl/images/logo-br.webp" alt="Ventanas BR Logo" style="width: 140px; height: auto; object-fit: contain; margin: 0 auto;" />
           </div>
           <h2 style="color: #1B1464; text-align: center; margin-bottom: 30px;">Nuevo mensaje de contacto desde la web</h2>
           <div style="background-color: white; padding: 20px; border-radius: 6px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); margin-bottom: 30px;">
@@ -69,7 +69,7 @@ export async function POST(req: Request) {
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #eaeaec; border-radius: 8px; background-color: #ffffff;">
           <div style="text-align: center; margin-bottom: 20px;">
-            <img src="https://ventanasbr.cl/images/logo-br.webp" alt="Ventanas BR Logo" style="max-width: 200px; height: auto;" />
+            <img src="https://ventanasbr.cl/images/logo-br.webp" alt="Ventanas BR Logo" style="width: 140px; height: auto; object-fit: contain; margin: 0 auto;" />
           </div>
           <h2 style="color: #1B1464; text-align: center; margin-bottom: 20px;">¡Hola ${name}!</h2>
           <p style="color: #374151; font-size: 16px; line-height: 1.6; text-align: center; margin-bottom: 30px;">
