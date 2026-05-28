@@ -9,7 +9,26 @@ export async function POST(req: Request) {
     }
 
     const resend = new Resend(process.env.RESEND_API_KEY);
-    const { name, email, phone, message } = await req.json();
+    const { name, email, phone, message, recaptchaToken } = await req.json();
+
+    if (!recaptchaToken) {
+      return NextResponse.json({ error: "Validación de seguridad requerida (reCAPTCHA)." }, { status: 400 });
+    }
+
+    const recaptchaRes = await fetch("https://www.google.com/recaptcha/api/siteverify", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+      },
+      body: `secret=${process.env.RECAPTCHA_SECRET_KEY}&response=${recaptchaToken}`,
+    });
+
+    const recaptchaData = await recaptchaRes.json();
+
+    if (!recaptchaData.success || recaptchaData.score < 0.5) {
+      console.error("ReCAPTCHA falló:", recaptchaData);
+      return NextResponse.json({ error: "No pudimos validar que eres humano. Intenta de nuevo." }, { status: 400 });
+    }
 
     // 1. Correo para el administrador de Ventanas BR
     const { data: adminData, error: adminError } = await resend.emails.send({

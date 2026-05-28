@@ -29,24 +29,35 @@ export function Contact() {
 
   const onSubmit = async (data: ContactFormData) => {
     try {
-      const response = await fetch("/api/contact", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
+      // @ts-ignore - grecaptcha is injected by Google script
+      window.grecaptcha.ready(async () => {
+        try {
+          // @ts-ignore
+          const token = await window.grecaptcha.execute(process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY, { action: 'submit' });
+          
+          const response = await fetch("/api/contact", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ ...data, recaptchaToken: token }),
+          });
+
+          if (!response.ok) {
+            const errorData = await response.json().catch(() => ({}));
+            throw new Error(errorData.error || "Error al enviar el mensaje");
+          }
+
+          alert("¡Mensaje enviado con éxito! Te contactaremos a la brevedad.");
+          reset();
+        } catch (error: any) {
+          console.error("Error submitting form:", error);
+          alert(`Hubo un error al enviar el mensaje: ${error.message || "Por favor, intenta nuevamente."}`);
+        }
       });
-
-      if (!response.ok) {
-        const errorData = await response.json().catch(() => ({}));
-        throw new Error(errorData.error || "Error al enviar el mensaje");
-      }
-
-      alert("¡Mensaje enviado con éxito! Te contactaremos a la brevedad.");
-      reset();
     } catch (error: any) {
-      console.error("Error submitting form:", error);
-      alert(`Hubo un error al enviar el mensaje: ${error.message || "Por favor, intenta nuevamente."}`);
+      console.error("Error initializing recaptcha:", error);
+      alert("Hubo un problema de seguridad. Por favor, intenta de nuevo.");
     }
   };
 
