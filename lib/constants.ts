@@ -1,9 +1,39 @@
 export const SITE_DATA = {
   name: "Ventanas BR",
+  url: "https://www.ventanasbr.cl",
   phone: "+56 9 7744 3314",
   phoneFull: "56977443314",
   email: "contacto@ventanasbr.cl",
   location: "Pan de Azúcar, Coquimbo, Chile",
+  addressFull: "Los Alerces 621, La Serena, Coquimbo, Chile",
+  address: {
+    streetAddress: "Los Alerces 621",
+    addressLocality: "Coquimbo",
+    addressRegion: "Coquimbo",
+    addressCountry: "CL"
+  },
+  openingHours: {
+    days: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+    opens: "08:00",
+    closes: "19:00"
+  },
+  geo: {
+    latitude: -30.0156078,
+    longitude: -71.2629016
+  },
+  mapUrl: "https://maps.app.goo.gl/iCALKW31AHLpFpCt7",
+  mapEmbedUrl:
+    "https://www.google.com/maps?q=-30.0156078,-71.2629016&z=17&output=embed",
+  social: {
+    facebook: "https://www.facebook.com/vidrio.aluminio.5454",
+    instagram: "https://www.instagram.com/vidrios_y_aluminios_obras/"
+  },
+  sameAs: [
+    "https://www.facebook.com/vidrio.aluminio.5454",
+    "https://www.instagram.com/vidrios_y_aluminios_obras/",
+    "https://maps.app.goo.gl/iCALKW31AHLpFpCt7"
+  ],
+  areaServed: ["Coquimbo", "La Serena", "Ovalle", "Vicuña"],
   colors: {
     primary: "#1B1464",
     secondary: "#ED1E79",
@@ -13,10 +43,10 @@ export const SITE_DATA = {
 };
 
 export const NAVIGATION = [
-  { name: "Inicio", href: "#" },
-  { name: "Nosotros", href: "#nosotros" },
-  { name: "Servicios", href: "#servicios" },
-  { name: "Contacto", href: "#contacto" }
+  { name: "Inicio", href: "/" },
+  { name: "Nosotros", href: "/#nosotros" },
+  { name: "Servicios", href: "/#servicios" },
+  { name: "Contacto", href: "/#contacto" }
 ];
 
 export const SERVICES = [

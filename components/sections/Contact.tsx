@@ -6,7 +6,9 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import { motion, AnimatePresence } from "framer-motion";
 import { SectionTitle, Button } from "@/components/ui/Common";
+import { BusinessMap } from "@/components/sections/BusinessMap";
 import { SITE_DATA } from "@/lib/constants";
+import { trackEvent } from "@/lib/analytics";
 import { Phone, Mail, MapPin, Send, CheckCircle, AlertCircle } from "lucide-react";
 
 const contactSchema = z.object({
@@ -35,11 +37,16 @@ export function Contact() {
     setSubmitStatus("idle");
     setErrorMessage("");
     try {
-      // @ts-ignore - grecaptcha is injected by Google script
-      window.grecaptcha.enterprise.ready(async () => {
+      const grecaptcha = window.grecaptcha;
+      const siteKey = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY;
+
+      if (!grecaptcha || !siteKey) {
+        throw new Error("reCAPTCHA no está disponible");
+      }
+
+      grecaptcha.enterprise.ready(async () => {
         try {
-          // @ts-ignore
-          const token = await window.grecaptcha.enterprise.execute(process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY, { action: 'submit' });
+          const token = await grecaptcha.enterprise.execute(siteKey, { action: 'submit' });
           
           const response = await fetch("/api/contact", {
             method: "POST",
@@ -55,6 +62,7 @@ export function Contact() {
           }
 
           setSubmitStatus("success");
+          trackEvent("generate_lead", { form: "contacto" });
           reset();
         } catch (error: any) {
           console.error("Error submitting form:", error);
@@ -94,7 +102,11 @@ export function Contact() {
                 </div>
                 <div>
                   <p className="text-sm text-gray-500 uppercase tracking-wider font-semibold">Llámanos</p>
-                  <a href={`tel:${SITE_DATA.phoneFull}`} className="text-lg font-bold text-primary hover:text-accent transition-colors">
+                  <a
+                    href={`tel:${SITE_DATA.phoneFull}`}
+                    onClick={() => trackEvent("phone_click", { location: "contacto" })}
+                    className="text-lg font-bold text-primary hover:text-accent transition-colors"
+                  >
                     {SITE_DATA.phone}
                   </a>
                 </div>
@@ -106,7 +118,11 @@ export function Contact() {
                 </div>
                 <div>
                   <p className="text-sm text-gray-500 uppercase tracking-wider font-semibold">Email</p>
-                  <a href={`mailto:${SITE_DATA.email}`} className="text-lg font-bold text-primary hover:text-accent transition-colors">
+                  <a
+                    href={`mailto:${SITE_DATA.email}`}
+                    onClick={() => trackEvent("email_click", { location: "contacto" })}
+                    className="text-lg font-bold text-primary hover:text-accent transition-colors"
+                  >
                     {SITE_DATA.email}
                   </a>
                 </div>
@@ -123,10 +139,13 @@ export function Contact() {
               </div>
             </div>
 
+            <BusinessMap />
+
             <Button 
               variant="whatsapp" 
               className="w-full py-4 text-lg"
               href={`https://wa.me/${SITE_DATA.phoneFull}`}
+              onClick={() => trackEvent("whatsapp_click", { location: "contacto" })}
             >
               Contactar por WhatsApp
             </Button>
@@ -183,8 +202,12 @@ export function Contact() {
 
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div className="space-y-2">
-                      <label className="text-sm font-semibold text-gray-700 ml-1">Nombre Completo</label>
+                      <label htmlFor="contact-name" className="text-sm font-semibold text-gray-700 ml-1">Nombre Completo</label>
                       <input
+                        id="contact-name"
+                        type="text"
+                        autoComplete="name"
+                        aria-invalid={errors.name ? true : undefined}
                         {...register("name")}
                         placeholder="Ej: Juan Pérez"
                         className={`w-full px-4 py-3 rounded-xl border ${errors.name ? 'border-red-500' : 'border-gray-200'} focus:outline-none focus:ring-2 focus:ring-accent/20 transition-all`}
@@ -192,8 +215,12 @@ export function Contact() {
                       {errors.name && <p className="text-red-500 text-xs ml-1">{errors.name.message}</p>}
                     </div>
                     <div className="space-y-2">
-                      <label className="text-sm font-semibold text-gray-700 ml-1">Teléfono</label>
+                      <label htmlFor="contact-phone" className="text-sm font-semibold text-gray-700 ml-1">Teléfono</label>
                       <input
+                        id="contact-phone"
+                        type="tel"
+                        autoComplete="tel"
+                        aria-invalid={errors.phone ? true : undefined}
                         {...register("phone")}
                         placeholder="Ej: +56 9 1234 5678"
                         className={`w-full px-4 py-3 rounded-xl border ${errors.phone ? 'border-red-500' : 'border-gray-200'} focus:outline-none focus:ring-2 focus:ring-accent/20 transition-all`}
@@ -203,8 +230,12 @@ export function Contact() {
                   </div>
 
                   <div className="space-y-2">
-                    <label className="text-sm font-semibold text-gray-700 ml-1">Email</label>
+                    <label htmlFor="contact-email" className="text-sm font-semibold text-gray-700 ml-1">Email</label>
                     <input
+                      id="contact-email"
+                      type="email"
+                      autoComplete="email"
+                      aria-invalid={errors.email ? true : undefined}
                       {...register("email")}
                       placeholder="ejemplo@correo.com"
                       className={`w-full px-4 py-3 rounded-xl border ${errors.email ? 'border-red-500' : 'border-gray-200'} focus:outline-none focus:ring-2 focus:ring-accent/20 transition-all`}
@@ -213,8 +244,10 @@ export function Contact() {
                   </div>
 
                   <div className="space-y-2">
-                    <label className="text-sm font-semibold text-gray-700 ml-1">Mensaje o Requerimiento</label>
+                    <label htmlFor="contact-message" className="text-sm font-semibold text-gray-700 ml-1">Mensaje o Requerimiento</label>
                     <textarea
+                      id="contact-message"
+                      aria-invalid={errors.message ? true : undefined}
                       {...register("message")}
                       rows={4}
                       placeholder="Cuéntanos sobre tus medidas o tipo de ventana..."
