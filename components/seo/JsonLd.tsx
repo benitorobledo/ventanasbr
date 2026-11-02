@@ -1,6 +1,8 @@
 import { SERVICES, SITE_DATA } from "@/lib/constants";
+import { SITE_DESCRIPTION } from "@/lib/seo";
 
-const businessId = `${SITE_DATA.url}/#business`;
+const organizationId = `${SITE_DATA.url}/#organization`;
+const businessId = `${SITE_DATA.url}/#localbusiness`;
 const websiteId = `${SITE_DATA.url}/#website`;
 
 const areaServed = SITE_DATA.areaServed.map((name) => ({
@@ -8,9 +10,39 @@ const areaServed = SITE_DATA.areaServed.map((name) => ({
   name,
 }));
 
+const postalAddress = {
+  "@type": "PostalAddress",
+  ...SITE_DATA.address,
+};
+
+const contactPoint = {
+  "@type": "ContactPoint",
+  telephone: SITE_DATA.phone,
+  email: SITE_DATA.email,
+  contactType: "customer service",
+  areaServed: "CL",
+  availableLanguage: ["es-CL", "es"],
+};
+
 const jsonLd = {
   "@context": "https://schema.org",
   "@graph": [
+    {
+      "@type": "Organization",
+      "@id": organizationId,
+      name: SITE_DATA.name,
+      alternateName: "Ventanas Benito Robledo",
+      url: `${SITE_DATA.url}/`,
+      description: SITE_DESCRIPTION,
+      logo: `${SITE_DATA.url}/images/logo-br.png`,
+      image: `${SITE_DATA.url}/images/logo-br.png`,
+      telephone: SITE_DATA.phone,
+      email: SITE_DATA.email,
+      address: postalAddress,
+      areaServed,
+      contactPoint: [contactPoint],
+      ...(SITE_DATA.sameAs.length > 0 ? { sameAs: SITE_DATA.sameAs } : {}),
+    },
     {
       "@type": "HomeAndConstructionBusiness",
       "@id": businessId,
@@ -19,12 +51,9 @@ const jsonLd = {
       url: `${SITE_DATA.url}/`,
       telephone: SITE_DATA.phone,
       email: SITE_DATA.email,
-      image: `${SITE_DATA.url}/images/logo-br.webp`,
-      logo: `${SITE_DATA.url}/images/logo-br.webp`,
-      address: {
-        "@type": "PostalAddress",
-        ...SITE_DATA.address,
-      },
+      image: `${SITE_DATA.url}/images/logo-br.png`,
+      logo: `${SITE_DATA.url}/images/logo-br.png`,
+      address: postalAddress,
       geo: {
         "@type": "GeoCoordinates",
         latitude: SITE_DATA.geo.latitude,
@@ -40,6 +69,10 @@ const jsonLd = {
           closes: SITE_DATA.openingHours.closes,
         },
       ],
+      contactPoint: [contactPoint],
+      parentOrganization: {
+        "@id": organizationId,
+      },
       ...(SITE_DATA.sameAs.length > 0 ? { sameAs: SITE_DATA.sameAs } : {}),
     },
     {
@@ -49,7 +82,7 @@ const jsonLd = {
       name: SITE_DATA.name,
       inLanguage: "es-CL",
       publisher: {
-        "@id": businessId,
+        "@id": organizationId,
       },
     },
     ...SERVICES.map((service) => ({

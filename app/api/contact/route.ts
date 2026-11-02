@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { Resend } from "resend";
 import { z } from "zod";
+import { getWhatsAppUrl } from "@/lib/constants";
 
 export const runtime = "nodejs";
 
@@ -138,6 +139,7 @@ export async function POST(req: Request) {
     const safePhone = escapeHtml(phone);
     const safeMessage = escapeHtml(message);
     const subjectName = sanitizeHeader(name);
+    const whatsappLink = getWhatsAppUrl().replace(/&/g, "&amp;");
 
     const { data: adminData, error: adminError } = await resend.emails.send({
       from: "Ventanas BR <contacto@ventanasbr.cl>",
@@ -194,7 +196,7 @@ export async function POST(req: Request) {
             Si necesitas atención más rápida, también puedes escribirnos a nuestro WhatsApp.
           </p>
           <div style="text-align: center; margin-bottom: 30px;">
-            <a href="https://api.whatsapp.com/send?phone=56977443314" style="background-color: #25D366; color: white; padding: 12px 24px; text-decoration: none; border-radius: 6px; font-weight: bold; display: inline-block;">Contactar por WhatsApp</a>
+            <a href="${whatsappLink}" style="background-color: #25D366; color: white; padding: 12px 24px; text-decoration: none; border-radius: 6px; font-weight: bold; display: inline-block;">Contactar por WhatsApp</a>
           </div>
           <div style="border-top: 2px solid #eaeaec; padding-top: 20px; text-align: center; color: #6b7280; font-size: 14px;">
             <p style="margin-bottom: 5px;"><strong>Ventanas BR</strong></p>

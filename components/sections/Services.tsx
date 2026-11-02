@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
-import { SERVICES, SITE_DATA } from "@/lib/constants";
+import { SERVICES, getWhatsAppUrl } from "@/lib/constants";
 import { trackEvent } from "@/lib/analytics";
 import { ChevronRight, Plus, X } from "lucide-react";
 
@@ -136,7 +136,9 @@ export function Services() {
 
                   <div className="pt-8 flex flex-col sm:flex-row gap-4">
                     <a 
-                      href={`${SITE_DATA.whatsappUrl}&text=${encodeURIComponent(`Hola, me gustaría cotizar: ${SERVICES[activeService].title}`)}`}
+                      href={getWhatsAppUrl(
+                        `Hola, vengo desde la página web de Ventanas BR y me gustaría cotizar: ${SERVICES[activeService].title}`
+                      )}
                       target="_blank"
                       rel="noopener noreferrer"
                       onClick={() => trackEvent("whatsapp_click", { location: "servicio", service: SERVICES[activeService].title })}

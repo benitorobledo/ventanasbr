@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import { SITE_DATA, NAVIGATION } from "@/lib/constants";
+import { SITE_DATA, NAVIGATION, getWhatsAppUrl } from "@/lib/constants";
 import { trackEvent } from "@/lib/analytics";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
@@ -50,7 +50,7 @@ export function Header() {
             </Link>
           ))}
           <a
-            href={SITE_DATA.whatsappUrl}
+            href={getWhatsAppUrl()}
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Contactar por WhatsApp"

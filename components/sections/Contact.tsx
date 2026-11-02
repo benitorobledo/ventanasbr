@@ -8,7 +8,7 @@ import * as z from "zod";
 import { motion, AnimatePresence } from "framer-motion";
 import { SectionTitle, Button } from "@/components/ui/Common";
 import { BusinessMap } from "@/components/sections/BusinessMap";
-import { SITE_DATA } from "@/lib/constants";
+import { SITE_DATA, getWhatsAppUrl } from "@/lib/constants";
 import { trackEvent } from "@/lib/analytics";
 import { Phone, Mail, MapPin, Send, CheckCircle, AlertCircle } from "lucide-react";
 
@@ -145,7 +145,7 @@ export function Contact() {
             <Button 
               variant="whatsapp" 
               className="w-full py-4 text-lg"
-              href={SITE_DATA.whatsappUrl}
+              href={getWhatsAppUrl()}
               onClick={() => trackEvent("whatsapp_click", { location: "contacto" })}
             >
               Contactar por WhatsApp

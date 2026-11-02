@@ -26,6 +26,8 @@ export const SITE_DATA = {
   mapEmbedUrl:
     "https://www.google.com/maps?q=-30.0156078,-71.2629016&z=17&output=embed",
   whatsappUrl: "https://api.whatsapp.com/send?phone=56977443314",
+  whatsappMessage:
+    "Hola, vengo desde la página web de Ventanas BR y me gustaría cotizar.",
   social: {
     facebook: "https://www.facebook.com/vidrio.aluminio.5454",
     instagram: "https://www.instagram.com/vidrios_y_aluminios_obras/"
@@ -43,6 +45,10 @@ export const SITE_DATA = {
     whatsapp: "#25D366"
   }
 };
+
+export function getWhatsAppUrl(message = SITE_DATA.whatsappMessage): string {
+  return `${SITE_DATA.whatsappUrl}&text=${encodeURIComponent(message)}`;
+}
 
 export const NAVIGATION = [
   { name: "Inicio", href: "/" },

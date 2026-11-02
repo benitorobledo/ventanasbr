@@ -2,13 +2,13 @@
 
 import { motion } from "framer-motion";
 import { MessageCircle } from "lucide-react";
-import { SITE_DATA } from "@/lib/constants";
+import { getWhatsAppUrl } from "@/lib/constants";
 import { trackEvent } from "@/lib/analytics";
 
 export function WhatsAppButton() {
   return (
     <motion.a
-      href={SITE_DATA.whatsappUrl}
+      href={getWhatsAppUrl()}
       target="_blank"
       rel="noopener noreferrer"
       onClick={() => trackEvent("whatsapp_click", { location: "flotante" })}
