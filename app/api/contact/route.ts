@@ -159,7 +159,7 @@ export async function POST(req: Request) {
           </div>
           <div style="border-top: 2px solid #eaeaec; padding-top: 20px; text-align: center; color: #6b7280; font-size: 14px;">
             <p style="margin-bottom: 5px;"><strong>Ventanas BR</strong></p>
-            <p style="margin-bottom: 0;">Los Alerces 621, Pan de Azúcar, Coquimbo, Chile</p>
+            <p style="margin-bottom: 0;">Los Alerces 621, La Serena, Coquimbo, Chile</p>
           </div>
         </div>
       `,
@@ -194,12 +194,12 @@ export async function POST(req: Request) {
             Si necesitas atención más rápida, también puedes escribirnos a nuestro WhatsApp.
           </p>
           <div style="text-align: center; margin-bottom: 30px;">
-            <a href="https://wa.me/56977443314" style="background-color: #25D366; color: white; padding: 12px 24px; text-decoration: none; border-radius: 6px; font-weight: bold; display: inline-block;">Contactar por WhatsApp</a>
+            <a href="https://api.whatsapp.com/send?phone=56977443314" style="background-color: #25D366; color: white; padding: 12px 24px; text-decoration: none; border-radius: 6px; font-weight: bold; display: inline-block;">Contactar por WhatsApp</a>
           </div>
           <div style="border-top: 2px solid #eaeaec; padding-top: 20px; text-align: center; color: #6b7280; font-size: 14px;">
             <p style="margin-bottom: 5px;"><strong>Ventanas BR</strong></p>
             <p style="margin-bottom: 5px;">Teléfono: <a href="tel:+56977443314" style="color: #00AEEF; text-decoration: none;">+56 9 7744 3314</a></p>
-            <p style="margin-bottom: 0;">Los Alerces 621, Pan de Azúcar, Coquimbo, Chile</p>
+            <p style="margin-bottom: 0;">Los Alerces 621, La Serena, Coquimbo, Chile</p>
           </div>
         </div>
       `,

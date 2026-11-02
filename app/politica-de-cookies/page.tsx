@@ -1,13 +1,40 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { LegalPage, LegalSection } from "@/components/legal/LegalPage";
+import { SITE_DATA } from "@/lib/constants";
+
+const pageTitle = "Política de Cookies | Ventanas BR";
+const pageDescription =
+  "Revisa qué cookies utiliza Ventanas BR, para qué sirven Google Analytics, Google Maps y Ahrefs, y cómo aceptar, rechazar o cambiar tu consentimiento.";
 
 export const metadata: Metadata = {
-  title: "Política de Cookies | Ventanas BR",
-  description:
-    "Información sobre las cookies necesarias y analíticas utilizadas en el sitio web de Ventanas BR.",
+  title: pageTitle,
+  description: pageDescription,
   alternates: {
     canonical: "/politica-de-cookies",
+  },
+  openGraph: {
+    type: "website",
+    locale: "es_CL",
+    url: "/politica-de-cookies",
+    siteName: SITE_DATA.name,
+    title: pageTitle,
+    description: pageDescription,
+    images: [
+      {
+        url: "/opengraph-image",
+        width: 1200,
+        height: 630,
+        type: "image/png",
+        alt: "Ventanas BR — Ventanas de Aluminio y PVC en Coquimbo",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: pageTitle,
+    description: pageDescription,
+    images: ["/opengraph-image"],
   },
 };
 

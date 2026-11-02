@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { SITE_DATA, NAVIGATION } from "@/lib/constants";
-import { Phone, Mail, MapPin } from "lucide-react";
+import { Phone, Mail, MapPin, Facebook, Instagram } from "lucide-react";
+import { CookiePreferencesButton } from "@/components/consent/CookiePreferencesButton";
 
 export function Footer() {
   return (
@@ -12,6 +13,26 @@ export function Footer() {
             Fabricación e instalación de ventanas a medida con más de 10 años de experiencia. 
             Especialistas en termopanel y eficiencia energética.
           </p>
+          <div className="flex items-center gap-4">
+            <a
+              href={SITE_DATA.social.facebook}
+              target="_blank"
+              rel="me noopener noreferrer"
+              aria-label="Facebook de Ventanas BR"
+              className="flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-white transition-colors hover:bg-accent"
+            >
+              <Facebook size={20} />
+            </a>
+            <a
+              href={SITE_DATA.social.instagram}
+              target="_blank"
+              rel="me noopener noreferrer"
+              aria-label="Instagram de Ventanas BR"
+              className="flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-white transition-colors hover:bg-accent"
+            >
+              <Instagram size={20} />
+            </a>
+          </div>
         </div>
         
         <div>
@@ -44,12 +65,29 @@ export function Footer() {
             </li>
             <li className="flex items-center gap-3 text-gray-300">
               <MapPin size={20} className="text-accent flex-shrink-0" />
-              <span>{SITE_DATA.location}</span>
+              <a
+                href={SITE_DATA.mapUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-white transition-colors"
+              >
+                {SITE_DATA.location}
+              </a>
             </li>
           </ul>
         </div>
       </div>
       
+      <div className="container mx-auto px-4 pb-6 flex flex-wrap items-center gap-x-6 gap-y-2 text-xs text-gray-400">
+        <Link href="/politica-de-privacidad" className="transition-colors hover:text-white">
+          Política de privacidad
+        </Link>
+        <Link href="/politica-de-cookies" className="transition-colors hover:text-white">
+          Política de cookies
+        </Link>
+        <CookiePreferencesButton />
+      </div>
+
       <div className="container mx-auto px-4 pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-gray-400">
         <p>&copy; {new Date().getFullYear()} {SITE_DATA.name}. Todos los derechos reservados.</p>
         <p>

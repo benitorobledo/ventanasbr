@@ -80,7 +80,7 @@ export function Hero() {
           </h1>
           
           <p className="text-lg md:text-2xl mb-16 max-w-3xl mx-auto text-white/90 font-medium leading-relaxed drop-shadow-md">
-            Desde Pan de Azúcar, Coquimbo fabricamos e instalamos ventanas a medida para Casas, Departamentos, Cabañas u Oficinas.
+            Desde La Serena, Coquimbo fabricamos e instalamos ventanas a medida para Casas, Departamentos, Cabañas u Oficinas.
           </p>
           
           <div className="flex flex-col sm:flex-row gap-6 justify-center items-center mt-4">

@@ -3,7 +3,8 @@
 import { useState } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
-import { SERVICES } from "@/lib/constants";
+import { SERVICES, SITE_DATA } from "@/lib/constants";
+import { trackEvent } from "@/lib/analytics";
 import { ChevronRight, Plus, X } from "lucide-react";
 
 export function Services() {
@@ -68,6 +69,7 @@ export function Services() {
                 </div>
 
                 <button 
+                  type="button"
                   onClick={() => setActiveService(index)}
                   className="flex items-center gap-3 text-primary font-black text-xs uppercase tracking-widest hover:text-accent transition-colors group/btn"
                 >
@@ -100,7 +102,9 @@ export function Services() {
               className="relative bg-white w-full max-w-5xl h-fit max-h-[90vh] rounded-[3rem] shadow-2xl overflow-hidden flex flex-col md:flex-row"
             >
               <button 
+                type="button"
                 onClick={() => setActiveService(null)}
+                aria-label="Cerrar detalles del servicio"
                 className="absolute top-6 right-6 z-20 bg-white/90 p-3 rounded-full text-primary hover:bg-secondary hover:text-white transition-all shadow-lg"
               >
                 <X size={24} />
@@ -132,8 +136,10 @@ export function Services() {
 
                   <div className="pt-8 flex flex-col sm:flex-row gap-4">
                     <a 
-                      href={`https://wa.me/56977443314?text=Hola, me gustaría cotizar: ${SERVICES[activeService].title}`}
+                      href={`${SITE_DATA.whatsappUrl}&text=${encodeURIComponent(`Hola, me gustaría cotizar: ${SERVICES[activeService].title}`)}`}
                       target="_blank"
+                      rel="noopener noreferrer"
+                      onClick={() => trackEvent("whatsapp_click", { location: "servicio", service: SERVICES[activeService].title })}
                       className="bg-accent text-white px-8 py-4 rounded-full font-black text-xs uppercase tracking-widest text-center hover:bg-primary transition-all shadow-xl shadow-accent/20"
                     >
                       Cotizar este servicio

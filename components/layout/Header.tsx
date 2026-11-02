@@ -4,6 +4,7 @@ import Image from "next/image";
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { SITE_DATA, NAVIGATION } from "@/lib/constants";
+import { trackEvent } from "@/lib/analytics";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
 
@@ -49,10 +50,11 @@ export function Header() {
             </Link>
           ))}
           <a
-            href={`https://wa.me/${SITE_DATA.phoneFull}`}
+            href={SITE_DATA.whatsappUrl}
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Contactar por WhatsApp"
+            onClick={() => trackEvent("whatsapp_click", { location: "header" })}
             className={`px-8 py-2.5 rounded-full text-xs font-black uppercase tracking-widest transition-all duration-300 shadow-md hover:shadow-xl hover:-translate-y-0.5 ${
               isScrolled ? "bg-primary text-white hover:bg-primary/90" : "bg-white text-primary hover:bg-gray-100"
             }`}
@@ -65,7 +67,8 @@ export function Header() {
         <button
           className="md:hidden p-2"
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-          aria-label="Toggle mobile menu"
+          aria-label={isMobileMenuOpen ? "Cerrar menú de navegación" : "Abrir menú de navegación"}
+          aria-expanded={isMobileMenuOpen}
         >
           {isMobileMenuOpen ? <X size={32} /> : <Menu size={32} />}
         </button>

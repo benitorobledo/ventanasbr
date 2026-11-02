@@ -4,11 +4,11 @@ export const SITE_DATA = {
   phone: "+56 9 7744 3314",
   phoneFull: "56977443314",
   email: "contacto@ventanasbr.cl",
-  location: "Pan de Azúcar, Coquimbo, Chile",
+  location: "La Serena, Coquimbo, Chile",
   addressFull: "Los Alerces 621, La Serena, Coquimbo, Chile",
   address: {
     streetAddress: "Los Alerces 621",
-    addressLocality: "Coquimbo",
+    addressLocality: "La Serena",
     addressRegion: "Coquimbo",
     addressCountry: "CL"
   },
@@ -21,9 +21,11 @@ export const SITE_DATA = {
     latitude: -30.0156078,
     longitude: -71.2629016
   },
-  mapUrl: "https://maps.app.goo.gl/iCALKW31AHLpFpCt7",
+  mapUrl:
+    "https://www.google.com/maps/place/Ventanas+Benito+Robledo/@-30.0153386,-71.2643899,18z/data=!4m6!3m5!1s0x9691cd00148ba6b5:0xf7ecfc4bff5c51f6!8m2!3d-30.0156078!4d-71.2629016!16s%2Fg%2F11zkyrv1s6",
   mapEmbedUrl:
     "https://www.google.com/maps?q=-30.0156078,-71.2629016&z=17&output=embed",
+  whatsappUrl: "https://api.whatsapp.com/send?phone=56977443314",
   social: {
     facebook: "https://www.facebook.com/vidrio.aluminio.5454",
     instagram: "https://www.instagram.com/vidrios_y_aluminios_obras/"
@@ -31,7 +33,7 @@ export const SITE_DATA = {
   sameAs: [
     "https://www.facebook.com/vidrio.aluminio.5454",
     "https://www.instagram.com/vidrios_y_aluminios_obras/",
-    "https://maps.app.goo.gl/iCALKW31AHLpFpCt7"
+    "https://www.google.com/maps/place/Ventanas+Benito+Robledo/@-30.0153386,-71.2643899,18z/data=!4m6!3m5!1s0x9691cd00148ba6b5:0xf7ecfc4bff5c51f6!8m2!3d-30.0156078!4d-71.2629016!16s%2Fg%2F11zkyrv1s6"
   ],
   areaServed: ["Coquimbo", "La Serena", "Ovalle", "Vicuña"],
   colors: {

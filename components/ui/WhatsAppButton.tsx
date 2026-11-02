@@ -3,13 +3,15 @@
 import { motion } from "framer-motion";
 import { MessageCircle } from "lucide-react";
 import { SITE_DATA } from "@/lib/constants";
+import { trackEvent } from "@/lib/analytics";
 
 export function WhatsAppButton() {
   return (
     <motion.a
-      href={`https://wa.me/${SITE_DATA.phoneFull}`}
+      href={SITE_DATA.whatsappUrl}
       target="_blank"
       rel="noopener noreferrer"
+      onClick={() => trackEvent("whatsapp_click", { location: "flotante" })}
       initial={{ scale: 0, opacity: 0 }}
       animate={{ scale: 1, opacity: 1 }}
       whileHover={{ scale: 1.1 }}

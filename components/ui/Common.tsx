@@ -25,7 +25,7 @@ export function Button({ children, onClick, type = "button", variant = "primary"
   const Component = href ? "a" : motion.button;
   const combinedClassName = `${baseStyles} ${variants[variant]} ${className} ${disabled ? "opacity-50 cursor-not-allowed" : ""}`;
   const props = href 
-    ? { href, className: combinedClassName } 
+    ? { href, onClick, className: combinedClassName } 
     : { onClick, type, disabled, className: combinedClassName, whileHover: disabled ? {} : { scale: 1.05 }, whileTap: disabled ? {} : { scale: 0.95 } };
 
   return <Component {...(props as any)}>{children}</Component>;

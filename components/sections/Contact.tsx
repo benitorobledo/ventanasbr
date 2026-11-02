@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
@@ -144,7 +145,7 @@ export function Contact() {
             <Button 
               variant="whatsapp" 
               className="w-full py-4 text-lg"
-              href={`https://wa.me/${SITE_DATA.phoneFull}`}
+              href={SITE_DATA.whatsappUrl}
               onClick={() => trackEvent("whatsapp_click", { location: "contacto" })}
             >
               Contactar por WhatsApp
@@ -266,6 +267,18 @@ export function Contact() {
                     {!isSubmitting && <Send size={20} />}
                   </Button>
                   
+                  <div className="text-xs text-gray-500 text-center pt-2">
+                    Al enviar tus datos aceptas nuestra{" "}
+                    <Link href="/politica-de-privacidad" className="underline hover:text-gray-700">
+                      Política de Privacidad
+                    </Link>{" "}
+                    y nuestra{" "}
+                    <Link href="/politica-de-cookies" className="underline hover:text-gray-700">
+                      Política de Cookies
+                    </Link>
+                    .
+                  </div>
+
                   <div className="text-xs text-gray-400 text-center pt-2">
                     Este sitio está protegido por reCAPTCHA y se aplican la{" "}
                     <a href="https://policies.google.com/privacy" target="_blank" rel="noreferrer" className="underline hover:text-gray-600">Política de Privacidad</a> y los{" "}

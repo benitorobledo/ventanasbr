@@ -1,13 +1,40 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { LegalPage, LegalSection } from "@/components/legal/LegalPage";
+import { SITE_DATA } from "@/lib/constants";
+
+const pageTitle = "Política de Privacidad | Ventanas BR";
+const pageDescription =
+  "Conoce cómo Ventanas BR trata los datos personales que envías a través de su formulario de contacto, qué proveedores utiliza y cómo ejercer tus derechos.";
 
 export const metadata: Metadata = {
-  title: "Política de Privacidad | Ventanas BR",
-  description:
-    "Información sobre el tratamiento de datos personales en el sitio web de Ventanas BR.",
+  title: pageTitle,
+  description: pageDescription,
   alternates: {
     canonical: "/politica-de-privacidad",
+  },
+  openGraph: {
+    type: "website",
+    locale: "es_CL",
+    url: "/politica-de-privacidad",
+    siteName: SITE_DATA.name,
+    title: pageTitle,
+    description: pageDescription,
+    images: [
+      {
+        url: "/opengraph-image",
+        width: 1200,
+        height: 630,
+        type: "image/png",
+        alt: "Ventanas BR — Ventanas de Aluminio y PVC en Coquimbo",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: pageTitle,
+    description: pageDescription,
+    images: ["/opengraph-image"],
   },
 };
 
@@ -21,8 +48,8 @@ export default function PrivacyPolicyPage() {
       <LegalSection title="1. Responsable del tratamiento">
         <p>
           El responsable de los datos personales es <strong>Ventanas BR</strong>,
-          con domicilio en Los Alerces 621, sector Pan de Azúcar, Coquimbo,
-          Chile. Para cualquier consulta puedes escribir a{" "}
+          con domicilio en Los Alerces 621, La Serena, Coquimbo, Chile. Para
+          cualquier consulta puedes escribir a{" "}
           <a
             href="mailto:contacto@ventanasbr.cl"
             className="font-semibold text-primary underline underline-offset-2"

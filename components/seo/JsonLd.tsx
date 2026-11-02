@@ -15,6 +15,7 @@ const jsonLd = {
       "@type": "HomeAndConstructionBusiness",
       "@id": businessId,
       name: SITE_DATA.name,
+      alternateName: "Ventanas Benito Robledo",
       url: `${SITE_DATA.url}/`,
       telephone: SITE_DATA.phone,
       email: SITE_DATA.email,
@@ -24,6 +25,12 @@ const jsonLd = {
         "@type": "PostalAddress",
         ...SITE_DATA.address,
       },
+      geo: {
+        "@type": "GeoCoordinates",
+        latitude: SITE_DATA.geo.latitude,
+        longitude: SITE_DATA.geo.longitude,
+      },
+      hasMap: SITE_DATA.mapUrl,
       areaServed,
       openingHoursSpecification: [
         {
